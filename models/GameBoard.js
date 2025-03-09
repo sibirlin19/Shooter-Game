@@ -11,8 +11,8 @@ export class GameBoard {
   drawBall() {
     this.ctx.beginPath();
     this.ctx.arc(
-      this.player.x,
-      this.player.y,
+      this.canvas.width / 2,
+      this.canvas.height / 2,
       this.player.radius,
       0,
       Math.PI * 2,
@@ -22,19 +22,26 @@ export class GameBoard {
     this.ctx.fill();
   }
 
-  drawProjectile(projectile) {
+  drawProjectile() {
     // console.log(this.projectile);
+    // this.projectile.x = this.canvas.width / 2;
+    // this.projectile.y = this.canvas.height / 2;
 
     this.ctx.beginPath();
     this.ctx.arc(
-      projectile.x,
-      projectile.y,
-      projectile.radius,
+      this.projectile.x,
+      this.projectile.y,
+      this.projectile.radius,
       0,
       Math.PI * 2,
       false
     );
-    this.ctx.fillStyle = projectile.color;
+    this.ctx.fillStyle = this.projectile.color;
     this.ctx.fill();
+  }
+
+  updateProjectile() {
+    this.projectile.x = this.projectile.x + this.projectile.velocity.x;
+    this.projectile.y = this.projectile.y + this.projectile.velocity.y;
   }
 }
